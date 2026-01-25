@@ -18,12 +18,19 @@ export class Home implements AfterViewInit {
       scrollTrigger: {
         trigger: '.home',
         start: 'top top',
-        end: '+=100%',
+        end: '+=125%',
         scrub: true,
         pin: true,
         anticipatePin: 1
       }
     });
+
+    tl.to('.home', {
+      maskPosition: '50% 70%',
+      WebkitMaskPosition: '50% 70%',
+      maskSize: '30vw',
+      ease: 'none'
+    }, 0);
 
     // Fundo — zoom cinematográfico
     tl.to('.home-fundo', {
