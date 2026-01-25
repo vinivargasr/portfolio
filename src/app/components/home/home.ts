@@ -26,9 +26,9 @@ export class Home implements AfterViewInit {
     });
 
     tl.to('.home', {
-      maskPosition: '50% 70%',
-      WebkitMaskPosition: '50% 70%',
-      maskSize: '30vw',
+      maskPosition: '50% 95%',
+      WebkitMaskPosition: '50% 95%',
+      maskSize: '15vw',
       ease: 'none'
     }, 0);
 
@@ -50,5 +50,12 @@ export class Home implements AfterViewInit {
       y: 30,
       ease: 'none'
     }, 0);
+
+    tl.to('.flash', {
+      opacity: 1,
+      duration: 0.2,
+      ease: 'power2.out'
+    }, 0.3)
+
   }
 }
