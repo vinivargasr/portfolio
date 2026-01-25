@@ -22,7 +22,6 @@ export class Home implements AfterViewInit {
         scrub: true,
         pin: true,
         anticipatePin: 1
-        // markers: true
       }
     });
 
@@ -41,7 +40,7 @@ export class Home implements AfterViewInit {
     // Texto sai suavemente
     tl.to('.home-txt', {
       opacity: 0,
-      y: -40,
+      y: 30,
       ease: 'none'
     }, 0);
   }
