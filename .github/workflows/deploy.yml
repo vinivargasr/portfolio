@@ -39,6 +39,6 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: dist/portfolio/browser/
+          local-dir: dist/porfolio/browser/
           server-dir: /vinivargas.com/
           dangerous-clean-slate: false
