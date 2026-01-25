@@ -1,4 +1,4 @@
-import { AfterViewInit, Component } from '@angular/core';
+import { AfterViewInit, Component, ChangeDetectorRef } from '@angular/core';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 
@@ -12,16 +12,30 @@ gsap.registerPlugin(ScrollTrigger);
 })
 export class Home implements AfterViewInit {
 
+  showAbout = false;
+
+  constructor(private cdr: ChangeDetectorRef) {}
+
   ngAfterViewInit(): void {
 
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: '.home',
         start: 'top top',
-        end: '+=125%',
-        scrub: true,
+        end: '+=175%',
+        scrub: 1.2,
         pin: true,
-        anticipatePin: 1
+        anticipatePin: 1,
+
+        onLeave: () => {
+          this.showAbout = true;
+          this.cdr.detectChanges();
+        },
+
+        onEnterBack: () => {
+          this.showAbout = false;
+          this.cdr.detectChanges();
+        }
       }
     });
 
@@ -56,6 +70,5 @@ export class Home implements AfterViewInit {
       duration: 0.2,
       ease: 'power2.out'
     }, 0.3)
-
   }
 }
