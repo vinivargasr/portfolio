@@ -1,4 +1,4 @@
-name: Deploy Angular to HostGator
+name: Deploy Angular to HostGator (debug)
 
 on:
   push:
@@ -22,7 +22,16 @@ jobs:
         run: npm install
 
       - name: Build Angular
-        run: npm run build -- --configuration production
+        run: npx ng build --configuration production
+
+      - name: Debug dist folder
+        run: |
+          echo "===== dist ====="
+          ls -la dist || true
+          echo "===== dist subfolders ====="
+          find dist -maxdepth 4 -type d || true
+          echo "===== dist files ====="
+          find dist -maxdepth 3 -type f || true
 
       - name: FTP Deploy
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
@@ -32,4 +41,4 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: dist/portfolio/browser/
           server-dir: /vinivargas.com/
-          dangerous-clean-slate: true
+          dangerous-clean-slate: false
