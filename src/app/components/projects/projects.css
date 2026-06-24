@@ -1,0 +1,460 @@
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans:400,700&display=swap');
+
+/* ────────────────────────────────────────
+   PROJECTS SECTION
+──────────────────────────────────────── */
+
+.projects-section {
+  background-color: #1a1a1a;
+  min-height: 100vh;
+  padding: 8rem 6vw 10rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* faixa diagonal de fundo – assinatura visual */
+.projects-section::before {
+  content: '';
+  position: absolute;
+  top: -10%;
+  left: -5%;
+  width: 60%;
+  height: 130%;
+  background: linear-gradient(135deg, #282828 60%, transparent 100%);
+  transform: skewX(-8deg);
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ── Header ── */
+
+.projects-header {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 5rem;
+}
+
+.projects-title {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: clamp(2.8rem, 6vw, 5rem);
+  font-weight: 400;
+  line-height: 1.05;
+  text-transform: uppercase;
+  color: #444;
+  margin: 0;
+  transform: skewY(-3deg);
+  transform-origin: left center;
+
+  span {
+    color: #ffffff;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+  }
+}
+
+/* ── Grid ── */
+
+.projects-grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 420px), 1fr));
+  gap: 2px;
+}
+
+/* ── Card ── */
+
+.project-card {
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  border: 1px solid #2a2a2a;
+  transition: border-color 0.4s ease;
+}
+
+.project-card:hover {
+  border-color: #555;
+}
+
+.card-inner {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* ── Preview (iframe container) ── */
+
+/* ── Preview (iframe container) ── */
+.card-preview {
+  position: relative;
+  width: 100%;
+  height: 320px;
+  overflow: hidden;
+  background: #111;
+  flex-shrink: 0;
+}
+
+.card-preview iframe {
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  border: none;
+  transform-origin: center center;
+  transform: scale(0.5);
+  pointer-events: none;
+  user-select: none;
+  transition: transform 0.6s ease;
+  left: -50%;
+  top: -50%;
+}
+.project-card:hover .card-preview iframe {
+  transform: scale(0.52);
+}
+.card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 40%, #1a1a1a 100%);
+  z-index: 2;
+  transition: opacity 0.4s ease;
+}
+
+.project-card:hover .card-overlay {
+  opacity: 0.6;
+}
+
+/* ── Info ── */
+
+.card-info {
+  padding: 1.5rem 1.8rem 2rem;
+  background: #1e1e1e;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  flex: 1;
+}
+
+.card-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-tag {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #888;
+  border: 1px solid #333;
+  padding: 0.2em 0.7em;
+}
+
+.card-year {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  color: #555;
+}
+
+.card-name {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: #fff;
+  margin: 0;
+  transform: skewY(-2deg);
+}
+
+.card-desc {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.82rem;
+  color: #777;
+  line-height: 1.6;
+  margin: 0;
+  max-width: 40ch;
+}
+
+.card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.3s ease, gap 0.3s ease;
+  width: fit-content;
+  pointer-events: all;
+}
+
+.card-link:hover {
+  color: #bbb;
+  gap: 0.85rem;
+}
+
+.card-link svg {
+  transition: transform 0.3s ease;
+}
+
+.card-link:hover svg {
+  transform: translate(3px, -3px);
+}
+
+/* ── Modal de Detalhes ── */
+
+.project-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.88);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 1.5rem;
+  transition: opacity 0.3s ease;
+}
+
+.modal-content {
+  background: #1a1a1a;
+  max-width: 640px;
+  width: 100%;
+  position: relative;
+  border: 1px solid #2a2a2a;
+  overflow: hidden;
+  box-shadow: 0 32px 64px rgba(0, 0, 0, 0.6);
+}
+
+/* ── Hero ── */
+
+.modal-hero {
+  position: relative;
+  height: 240px;
+  overflow: hidden;
+  background: #111;
+}
+
+.hero-iframe-wrap {
+  position: absolute;
+  inset: 0;
+  filter: blur(1.5px);
+  opacity: 0.5;
+}
+
+.hero-iframe-wrap iframe {
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  border: none;
+  top: -50%;
+  left: -50%;
+  transform: scale(0.5);
+  transform-origin: center center;
+  pointer-events: none;
+  user-select: none;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, #1a1a1a 100%);
+}
+
+.hero-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.6rem 2rem;
+  z-index: 2;
+}
+
+.modal-tag {
+  display: inline-block;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #888;
+  border: 1px solid #333;
+  padding: 0.2em 0.7em;
+  margin-bottom: 0.75rem;
+}
+
+.modal-title {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.03em;
+  color: #fff;
+  line-height: 1;
+  margin: 0;
+}
+
+.modal-year {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  color: #555;
+  margin-top: 0.4rem;
+}
+
+/* ── Botão fechar ── */
+
+.modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid #333;
+  color: #aaa;
+  font-size: 1.1rem;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  transition: color 0.2s ease, border-color 0.2s ease;
+  line-height: 1;
+}
+
+.modal-close:hover {
+  color: #fff;
+  border-color: #555;
+}
+
+/* ── Corpo ── */
+
+.modal-body {
+  padding: 1.8rem 2rem 2rem;
+}
+
+.modal-desc {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.88rem;
+  color: #999;
+  line-height: 1.7;
+  margin: 0 0 1.4rem;
+  max-width: 52ch;
+}
+
+.modal-divider {
+  border: none;
+  border-top: 1px solid #2a2a2a;
+  margin-bottom: 1.4rem;
+}
+
+.modal-section-label {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #555;
+  margin-bottom: 0.8rem;
+}
+
+.modal-technologies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.8rem;
+}
+
+.tech-tag {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #ccc;
+  background: #222;
+  border: 1px solid #333;
+  padding: 0.3em 0.8em;
+}
+
+.modal-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.modal-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #fff;
+  background: #2a2a2a;
+  border: 1px solid #444;
+  padding: 0.8rem 1.8rem;
+  text-decoration: none;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.modal-button:hover {
+  background: #333;
+  border-color: #555;
+}
+
+.modal-button svg {
+  transition: transform 0.2s ease;
+}
+
+.modal-button:hover svg {
+  transform: translate(3px, -3px);
+}
+
+.modal-url-hint {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #444;
+}
+
+/* ── Responsivo ── */
+
+@media (max-width: 600px) {
+  .modal-hero {
+    height: 180px;
+  }
+
+  .modal-title {
+    font-size: 1.6rem;
+  }
+
+  .modal-body {
+    padding: 1.4rem 1.4rem 1.6rem;
+  }
+
+  .modal-actions {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.8rem;
+  }
+}
+
+/* ── Responsivo ── */
+
+@media (max-width: 600px) {
+  .card-preview {
+    height: 220px;
+  }
+
+  .card-preview iframe {
+    transform: scale(0.5);
+  }
+
+  .project-card:hover .card-preview iframe {
+    transform: scale(0.55);
+  }
+}

@@ -1,179 +1,315 @@
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans:400,700&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #282828;
+  color: white;
+}
+
+/* ── Wrapper geral ── */
 .home-container {
-	position: relative;
+  position: relative;
 }
 
+/* ── Seção 1: Hero com mask ── */
 .home {
-    width: 100%;
-    height: 100vh;
-    overflow: hidden;
-	z-index: 99;
-	mask-image: url(../../../../public/imgs/test6.svg);
-	mask-repeat: no-repeat;
-	mask-size: 10000vh;
-	mask-position: calc(50% - 3%) 70%;
-}
-
-.home2 {
-  position: fixed;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100vh;
-  background-color: #282828;
-  z-index: 98;
-  
+  overflow: hidden;
+  z-index: 2;
+  position: relative;
+
+  mask-image: url(../../../../public/imgs/test6.svg);
+  mask-repeat: no-repeat;
+  mask-size: 10000vh;
+  mask-position: calc(50% - 3%) 70%;
+
+  -webkit-mask-image: url(../../../../public/imgs/test6.svg);
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-size: 10000vh;
+  -webkit-mask-position: calc(50% - 3%) 70%;
+}
+
+/* ── Seção 2: About — fluxo normal ── */
+.home2 {
+  width: 100%;
+  height: 100vh;
+  background-color: #282828 !important;
+  z-index: 1;
+
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 2ch;
+
+  /* conteúdo começa invisível, o TS anima a entrada */
+  opacity: 0;
 }
 
+/* ── Imagem de fundo ── */
 .home-fundo {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center 30%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
 }
 
+/* ── PNG da pessoa ── */
 .home-png {
-    position: absolute;
-
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center 30%;
-
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 3;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
 }
 
+/* ── Texto Hero ── */
 .home-txt {
   position: absolute;
-
   top: 20%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 2;
-
   color: white;
   text-align: center;
 }
 
+/* ── Flash branco ── */
 .flash {
   position: absolute;
   inset: 0;
   background: white;
-  opacity: 0;
+  opacity: 0 !important;
   pointer-events: none;
   z-index: 5;
   mix-blend-mode: screen;
 }
 
-/* Estilo do Texto (Front-end Developer) */
-
-@import url('https://fonts.googleapis.com/css?family=Josefin+Sans:400,700&display=swap');
-
-* {
-	box-sizing: border-box;
-}
-
-body {
-	background-color: black;
-	color: white;
-	display: flex;
-	min-height: 100vh;
-	align-items: center;
-	justify-content: center;
-}
-
+/* ── Tipografia do h1 ── */
 h1 {
-	--low: 20%;
-	--high: 80%;
-	--gap: 0.9rem;
-	--offset: calc(var(--gap) / 2);
-	
-	--clip1: polygon(calc(var(--high) + var(--offset)) 0, 100% 0, 100% 100%, calc(var(--low) + var(--offset)) 100%);
-	--clip2: polygon(calc(var(--high) - var(--offset)) 0, calc(var(--low) - var(--offset)) 100%, 0 100%, 0 0);
-	
-	text-align: center;
-	font-family: 'Josefin Sans', sans-serif;
-	font-size: 3rem;
-	line-height: 1;
-	text-transform: uppercase;
-	position: relative;
-	max-width: 30rem;
-	color: transparent;
-	
-	@media (min-width: 40rem) {
-		font-size: 5rem;
-	}
-	
-	span {
-		color: white;
-		font-weight: 700;
-		letter-spacing: -0.03em;
-	}
-	
-	&::before,
-	&::after {
-		content: var(--text);
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		text-align: center;
-		color: white;
-		z-index: -1;
-	}
-	
-	&::after {
-		font-weight: 700;
-		letter-spacing: -0.03em;
-		-webkit-clip-path: var(--clip1);
-		clip-path: var(--clip1);
-	}
-	
-	&::before {
-		font-weight: 400;
-		-webkit-clip-path: var(--clip2);
-		clip-path: var(--clip2);
-	}
+  --low: 20%;
+  --high: 80%;
+  --gap: 0.9rem;
+  --offset: calc(var(--gap) / 2);
+
+  --clip1: polygon(calc(var(--high) + var(--offset)) 0, 100% 0, 100% 100%, calc(var(--low) + var(--offset)) 100%);
+  --clip2: polygon(calc(var(--high) - var(--offset)) 0, calc(var(--low) - var(--offset)) 100%, 0 100%, 0 0);
+
+  text-align: center;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 3rem;
+  line-height: 1;
+  text-transform: uppercase;
+  position: relative;
+  max-width: 30rem;
+  color: transparent;
+
+  @media (min-width: 40rem) {
+    font-size: 4rem;
+  }
+
+  span {
+    color: white;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+  }
+
+  &::before,
+  &::after {
+    content: var(--text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    color: white;
+    z-index: -1;
+  }
+
+  &::after {
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    -webkit-clip-path: var(--clip1);
+    clip-path: var(--clip1);
+  }
+
+  &::before {
+    font-weight: 400;
+    -webkit-clip-path: var(--clip2);
+    clip-path: var(--clip2);
+  }
 }
 
-/* texto descrição home2*/
-
+/* ── Ícones e texto do about ── */
 .home2 img {
-	max-width: 15px;
-	transform-style: preserve-3d;
-	transform: skewY(-15deg);
+  max-width: 15px;
+  transform-style: preserve-3d;
+  transform: skewY(-15deg);
 }
 
 .imgs {
-	display: flex;
- 	gap: 5px;
-  	align-items: center;
+  display: flex;
+  gap: 5px;
+  align-items: center;
 }
 
 p {
-	max-width: 30ch;
-	transform-style: preserve-3d;
-	transform: skewY(-15deg);
-	color: white;
+  max-width: 30ch;
+  transform-style: preserve-3d;
+  transform: skewY(-15deg);
+  color: white;
 }
 
-/* impedir seleção de img e titulo*/
+/* ── Bloqueia seleção/arraste ── */
+img, h1 {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-user-drag: none;
+  pointer-events: none;
+}
 
-img, h1{
-    -webkit-user-select: none; /* Safari, Chrome, Opera */
-    -khtml-user-select: none;  /* Konqueror HTML */
-    -moz-user-select: none;    /* Firefox */
-    -ms-user-select: none;     /* Internet Explorer/Edge */
-    user-select: none;         /* Padrão moderno (não selecionável) */
-    
-    -webkit-user-drag: none;   /* Impede arraste no Chrome/Safari */
+/* ==========================================
+   ABOUT SECTION
+========================================== */
 
-    pointer-events: none;      /* Opcional: remove qualquer interação com o mouse */
+.home2 {
+  min-height: 100vh;
+  background: #111;
+  padding: 8rem 6vw;
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+}
+
+/* faixa diagonal */
+
+.home2::before {
+  content: '';
+  position: absolute;
+  top: -10%;
+  left: -5%;
+  width: 55%;
+  height: 130%;
+
+  background: linear-gradient(
+    135deg,
+    #1e1e1e 60%,
+    transparent 100%
+  );
+
+  transform: skewX(-8deg);
+
+  z-index: 0;
+}
+
+.about-header,
+.about-body {
+  position: relative;
+  z-index: 1;
+}
+
+/* título */
+
+.about-title {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: clamp(2.8rem, 6vw, 5rem);
+  line-height: 1.05;
+  text-transform: uppercase;
+
+  color: #333;
+
+  margin: 0;
+  transform: skewY(-3deg);
+}
+
+.about-title span {
+  color: white;
+  font-weight: 700;
+}
+
+/* layout */
+
+.about-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+}
+
+/* texto */
+
+.about-description {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 1rem;
+  line-height: 1.9;
+
+  color: #888;
+  max-width: 45ch;
+
+  transform: skewY(-2deg);
+}
+
+/* skills */
+
+.about-skills {
+  display: flex;
+  flex-direction: column;
+}
+
+.skill-item {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+
+  align-items: center;
+
+  padding: 1.2rem 0;
+
+  border-top: 1px solid #222;
+}
+
+.skill-item:last-child {
+  border-bottom: 1px solid #222;
+}
+
+.skill-label {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: .65rem;
+
+  letter-spacing: .3em;
+  text-transform: uppercase;
+
+  color: #555;
+}
+
+.skill-value {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 1rem;
+
+  color: #fff;
+}
+
+/* responsivo */
+
+@media (max-width: 768px) {
+
+  .home2 {
+    padding: 5rem 5vw;
+  }
+
+  .about-body {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
 }

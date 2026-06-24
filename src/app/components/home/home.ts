@@ -12,33 +12,26 @@ gsap.registerPlugin(ScrollTrigger);
 })
 export class Home implements AfterViewInit {
 
-  showAbout = false;
+  showAbout = true; // sempre visível agora — o @if pode ser removido do HTML se quiser
 
   constructor(private cdr: ChangeDetectorRef) {}
 
   ngAfterViewInit(): void {
 
+    // ── Timeline da seção Hero (pin + mask) ──────────────────────────────────
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: '.home',
         start: 'top top',
         end: '+=175%',
         scrub: 1.2,
-        pin: true,
+        pin: true,           // pineia APENAS o .home
         anticipatePin: 1,
-
-        onLeave: () => {
-          this.showAbout = true;
-          this.cdr.detectChanges();
-        },
-
-        onEnterBack: () => {
-          this.showAbout = false;
-          this.cdr.detectChanges();
-        }
+        pinSpacing: true,    // empurra o .home2 para baixo enquanto o pin está ativo
       }
     });
 
+    // Mask fecha
     tl.to('.home', {
       maskPosition: '50% 95%',
       WebkitMaskPosition: '50% 95%',
@@ -65,10 +58,45 @@ export class Home implements AfterViewInit {
       ease: 'none'
     }, 0);
 
+    // Flash branco
     tl.to('.flash', {
       opacity: 1,
       duration: 0.2,
       ease: 'power2.out'
-    }, 0.3)
+    }, 0.3);
+
+    gsap.from('.about-header', {
+  scrollTrigger: {
+    trigger: '.home2',
+    start: 'top 75%',
+  },
+  y: 50,
+  opacity: 0,
+  duration: 1,
+  ease: 'power3.out',
+});
+
+gsap.from('.about-content', {
+  scrollTrigger: {
+    trigger: '.home2',
+    start: 'top 70%',
+  },
+  x: -50,
+  opacity: 0,
+  duration: 1,
+  ease: 'power3.out',
+});
+
+gsap.from('.skill-item', {
+  scrollTrigger: {
+    trigger: '.about-skills',
+    start: 'top 80%',
+  },
+  y: 20,
+  opacity: 0,
+  stagger: 0.12,
+  duration: 0.6,
+  ease: 'power2.out',
+});
   }
 }

@@ -1,0 +1,113 @@
+<section class="contact-section">
+
+  <div class="contact-header">
+    <h2 class="contact-title">Vamos<br /><span>Trabalhar</span><br />Juntos?</h2>
+  </div>
+
+  <div class="contact-body">
+
+    <!-- Coluna esquerda: info + links -->
+    <div class="contact-info">
+      <p class="contact-intro">
+        Tenho interesse em projetos freelance, colaborações e oportunidades de trabalho. Se quiser conversar, é só mandar uma mensagem.
+      </p>
+
+      <ul class="contact-links">
+        <li>
+          <a href="mailto:viniciusvargas3900@gmail.com" class="contact-link-item">
+            <span class="link-label">Email</span>
+            <span class="link-value">viniciusvargas3900&#64;gmail.com</span>
+            <svg class="link-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M7 17L17 7M17 7H7M17 7v10"/>
+            </svg>
+          </a>
+        </li>
+        <li>
+          <a href="https://linkedin.com/in/vinivargasr" target="_blank" rel="noopener" class="contact-link-item">
+            <span class="link-label">LinkedIn</span>
+            <span class="link-value">linkedin.com/in/vinivargasr</span>
+            <svg class="link-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M7 17L17 7M17 7H7M17 7v10"/>
+            </svg>
+          </a>
+        </li>
+        <li>
+          <a href="https://github.com/vinivargasr" target="_blank" rel="noopener" class="contact-link-item">
+            <span class="link-label">GitHub</span>
+            <span class="link-value">github.com/vinivargasr</span>
+            <svg class="link-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M7 17L17 7M17 7H7M17 7v10"/>
+            </svg>
+          </a>
+        </li>
+        <li>
+          <a href="https://wa.me/5541992711008" target="_blank" rel="noopener" class="contact-link-item">
+            <span class="link-label">WhatsApp</span>
+            <span class="link-value">+55 (41) 9 9271-1008</span>
+            <svg class="link-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M7 17L17 7M17 7H7M17 7v10"/>
+            </svg>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Coluna direita: formulário -->
+    <div class="contact-form-wrap">
+      <div class="form-group">
+        <label class="form-label" for="contact-name">Nome</label>
+        <input
+          id="contact-name"
+          class="form-input"
+          type="text"
+          placeholder="Seu nome"
+          [(ngModel)]="formData.name"
+        />
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="contact-email">Email</label>
+        <input
+          id="contact-email"
+          class="form-input"
+          type="email"
+          placeholder="seu@email.com"
+          [(ngModel)]="formData.email"
+        />
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="contact-msg">Mensagem</label>
+        <textarea
+          id="contact-msg"
+          class="form-input form-textarea"
+          placeholder="Conte um pouco sobre o projeto..."
+          [(ngModel)]="formData.message"
+          rows="5"
+        ></textarea>
+      </div>
+
+      <button class="form-submit" (click)="sendEmail()" [class.loading]="sending">
+        @if (!sending) {
+          <span>Enviar mensagem</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z"/>
+          </svg>
+        } @else {
+          <span>Enviando...</span>
+        }
+      </button>
+
+      @if (submitted) {
+        <p class="form-success">✓ Mensagem enviada! Responderei em breve.</p>
+      }
+    </div>
+
+  </div>
+
+  <!-- Footer mínimo -->
+  <div class="contact-footer">
+    <span>© 2026 — Vinícius Vargas. Todos os direitos reservados.</span>
+  </div>
+
+</section>

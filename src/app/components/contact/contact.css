@@ -1,0 +1,284 @@
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans:400,700&display=swap');
+
+/* ────────────────────────────────────────
+   CONTACT SECTION
+──────────────────────────────────────── */
+
+.contact-section {
+  background-color: #111;
+  min-height: 100vh;
+  padding: 8rem 6vw 5rem;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+}
+
+/* linha diagonal de fundo, espelho do projects */
+.contact-section::after {
+  content: '';
+  position: absolute;
+  bottom: -10%;
+  right: -5%;
+  width: 55%;
+  height: 120%;
+  background: linear-gradient(315deg, #1e1e1e 60%, transparent 100%);
+  transform: skewX(-8deg);
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ── Header ── */
+
+.contact-header {
+  position: relative;
+  z-index: 1;
+}
+
+
+.contact-title {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: clamp(2.8rem, 6vw, 5rem);
+  font-weight: 400;
+  line-height: 1.05;
+  text-transform: uppercase;
+  color: #333;
+  margin: 0;
+  transform: skewY(-3deg);
+  transform-origin: left center;
+
+  span {
+    color: #fff;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+  }
+}
+
+/* ── Body (duas colunas) ── */
+
+.contact-body {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 6rem;
+  align-items: start;
+}
+
+/* ── Info coluna ── */
+
+.contact-intro {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.9rem;
+  color: #777;
+  line-height: 1.7;
+  max-width: 36ch;
+  margin: 0 0 3rem;
+  transform: skewY(-2deg);
+}
+
+.contact-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.contact-link-item {
+  display: grid;
+  grid-template-columns: 90px 1fr 16px;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.1rem 0;
+  border-top: 1px solid #222;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.3s ease;
+
+  &:last-child {
+    border-bottom: 1px solid #222;
+  }
+
+  &:hover {
+    border-color: #444;
+
+    .link-label {
+      color: #bbb;
+    }
+
+    .link-value {
+      color: #fff;
+    }
+
+    .link-arrow {
+      transform: translate(3px, -3px);
+      color: #fff;
+    }
+  }
+}
+
+.link-label {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #555;
+  transition: color 0.3s ease;
+}
+
+.link-value {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.82rem;
+  color: #888;
+  transition: color 0.3s ease;
+}
+
+.link-arrow {
+  color: #444;
+  transition: transform 0.3s ease, color 0.3s ease;
+  justify-self: end;
+}
+
+/* ── Formulário ── */
+
+.contact-form-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-label {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #555;
+}
+
+.form-input {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #2a2a2a;
+  color: #fff;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.9rem;
+  padding: 0.8rem 0;
+  outline: none;
+  transition: border-color 0.3s ease;
+  width: 100%;
+  resize: none;
+
+  &::placeholder {
+    color: #3a3a3a;
+  }
+
+  &:focus {
+    border-color: #666;
+  }
+}
+
+.form-textarea {
+  min-height: 110px;
+  line-height: 1.6;
+}
+
+.form-submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+  padding: 1rem 2rem;
+  background: #fff;
+  color: #111;
+  border: none;
+  cursor: pointer;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  font-weight: 700;
+  transition: background 0.3s ease, color 0.3s ease, transform 0.2s ease;
+  width: fit-content;
+
+  &:hover {
+    background: #ddd;
+    transform: skewY(-2deg);
+  }
+
+  &:active {
+    transform: skewY(-2deg) scale(0.98);
+  }
+
+  &.loading {
+    opacity: 0.6;
+    pointer-events: none;
+  }
+
+  svg {
+    transition: transform 0.3s ease;
+  }
+
+  &:hover svg {
+    transform: rotate(-30deg);
+  }
+}
+
+.form-success {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  color: #aaa;
+  margin: 0;
+  transform: skewY(-2deg);
+}
+
+/* ── Footer ── */
+
+.contact-footer {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #1e1e1e;
+  padding-top: 2rem;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #444;
+}
+
+.footer-built {
+  color: #333;
+}
+
+/* ── Responsivo ── */
+
+@media (max-width: 768px) {
+  .contact-section {
+    padding: 5rem 5vw 4rem;
+    gap: 3.5rem;
+  }
+
+  .contact-body {
+    grid-template-columns: 1fr;
+    gap: 3.5rem;
+  }
+
+  .contact-footer {
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+  }
+}

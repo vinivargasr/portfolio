@@ -1,0 +1,91 @@
+<section class="projects-section">
+  <div class="projects-header">
+    <h2 class="projects-title">Projetos<br /><span>Realizados</span></h2>
+  </div>
+
+  <div class="projects-grid">
+    @for (project of projects; track project.id) {
+      <div class="project-card" (mouseenter)="onHover(project.id)" (mouseleave)="onLeave()">
+        <div class="card-inner" (click)="onSelect(project)">
+          <div class="card-preview">
+            <iframe
+              [src]="project.url | safe"
+              scrolling="no"
+              frameborder="0"
+              loading="lazy"
+              tabindex="-1"
+            ></iframe>
+            <div class="card-overlay"></div>
+          </div>
+          <div class="card-info">
+            <div class="card-meta">
+              <span class="card-tag">{{ project.tag }}</span>
+              <span class="card-year">{{ project.year }}</span>
+            </div>
+            <h3 class="card-name">{{ project.name }}</h3>
+            <p class="card-desc">{{ project.description }}</p>
+            <a [href]="project.url" target="_blank" rel="noopener" class="card-link" (click)="$event.stopPropagation()">
+              <span>Ver projeto</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M7 17L17 7M17 7H7M17 7v10"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+
+  <!-- Modal de detalhes -->
+  <div class="project-modal" *ngIf="selectedProject" (click)="closeModal()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <button class="modal-close" (click)="closeModal()">×</button>
+
+      <!-- Hero com iframe de fundo -->
+      <div class="modal-hero">
+        <div class="hero-iframe-wrap">
+          <iframe
+            [src]="selectedProject.url | safe"
+            scrolling="no"
+            frameborder="0"
+            loading="lazy"
+            tabindex="-1"
+          ></iframe>
+        </div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+          <span class="modal-tag">{{ selectedProject.tag }}</span>
+          <h3 class="modal-title">{{ selectedProject.name }}</h3>
+          <p class="modal-year">{{ selectedProject.year }}</p>
+        </div>
+      </div>
+
+      <!-- Corpo -->
+      <div class="modal-body">
+        <p class="modal-desc">{{ selectedProject.description }}</p>
+        <hr class="modal-divider" />
+        <p class="modal-section-label">Tecnologias utilizadas</p>
+        <div class="modal-technologies">
+          @for (tech of selectedProject.technologies; track tech) {
+            <span class="tech-tag">{{ tech }}</span>
+          }
+        </div>
+        <div class="modal-actions">
+            <a
+          
+            [href]="selectedProject.url"
+            target="_blank"
+            rel="noopener"
+            class="modal-button"
+          >
+            <span>Visitar projeto</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M7 17L17 7M17 7H7M17 7v10"/>
+            </svg>
+          </a>
+          <span class="modal-url-hint">{{ getUrlDomain(selectedProject.url) }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
